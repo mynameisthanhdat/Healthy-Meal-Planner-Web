@@ -1,0 +1,50 @@
+.header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  background-color: rgb(104, 185, 145);
+  // position: fixed;
+  // margin-bottom: 70px;
+
+  .logo-container {
+    height: 100%;
+    width: 70px;
+    // padding: 25px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    margin: 15px;
+  }
+
+  .number {
+    background-color: red;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    padding-left: 5px;
+    color: #fff;
+  }
+
+  .options {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 20px;
+    
+    .option {
+      color: #fff;
+      padding: 10px 15px;
+      text-decoration: none;
+    }
+
+    .cart {
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  // border: 1px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 25px;
+  margin: 10px auto;
+  min-width: 250px;
+  max-width: 300px;
+  height: 360px;
+  background-color: whitesmoke;
+  box-shadow: 5px 5px 25px rgb(184, 183, 183);
+  
+  .image {
+    width: 240px !important;
+    height: 180px !important;
+  }
+
+  .name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
