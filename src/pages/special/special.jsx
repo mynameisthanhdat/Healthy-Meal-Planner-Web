@@ -8,7 +8,7 @@ import barbeque from "../../assets/imgs/barbeque.png";
 import hotpot from "../../assets/imgs/hot-pot.png";
 import another from "../../assets/imgs/salad.png";
 
-function SpecialPage() {
+export const SpecialPage = () => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [valueFilter, setValueFilter] = useState(1);
@@ -60,6 +60,7 @@ function SpecialPage() {
   const chooseType = async (id, value) => {
     await setColorId(id);
     await setValueFilter(value);
+    console.log(value, search);
     var listData = dataSource.filter(
       (item) =>
         item?.kindOf.toString().includes(value) &&
@@ -79,73 +80,57 @@ function SpecialPage() {
   };
 
   return (
-    <div>
-      {!isLoading ? (
-        <Segment>
-          <div className="container">
-            <div className="filter">
-              <div className="mb-3">
-                <Button
-                  color={colorId === 1 ? "green" : "gray"}
-                  onClick={() => chooseType(1, 1)}
-                >
-                  <img src={hotpot} className="iconFood" />
-                  <span className="ml-2" /> Lẫu
-                </Button>
-                <Button
-                  color={colorId === 2 ? "green" : "gray"}
-                  onClick={() => chooseType(2, 2)}
-                >
-                  <img src={barbeque} className="iconFood" />
-                  <span className="ml-2" /> Đồ nướng
-                </Button>
-                <Button
-                  color={colorId === 3 ? "green" : "gray"}
-                  onClick={() => chooseType(3, 3)}
-                >
-                  <img src={another} className="iconFood" />
-                  <span className="ml-2" /> Khác
-                </Button>
-              </div>
-              <div>
-                <Input
-                  icon="search"
-                  placeholder="Search..."
-                  onChange={(e) => {
-                    onSearch(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
-            <div className="listItem">
-              {dataFilter.length > 0 ? (
-                dataFilter.map((item) => (
-                  <CardItem
-                    key={item.key}
-                    product={item}
-                    onAddItem={() => addToCart()}
-                  />
-                ))
-              ) : (
-                <p className="text-success font-weight-bold">
-                  Chưa có món ăn tên {search} trong danh sách món 
-                  {colorId == 1
-                    ? " Lẫu"
-                    : colorId == 2
-                    ? " Đồ nướng"
-                    : " Món khác"}
-                </p>
-              )}
-            </div>
-          </div>
+    <Segment className="container customSegment">
+      <Segment className="filter customSegment">
+        <Segment className="mb-3 customSegment">
+          <Button
+            color={colorId === 1 ? "green" : "gray"}
+            onClick={() => chooseType(1, 1)}
+          >
+            <img src={hotpot} className="iconFood" />
+            <span className="ml-2" /> Lẫu
+          </Button>
+          <Button
+            color={colorId === 2 ? "green" : "gray"}
+            onClick={() => chooseType(2, 2)}
+          >
+            <img src={barbeque} className="iconFood" />
+            <span className="ml-2" /> Đồ nướng
+          </Button>
+          <Button
+            color={colorId === 3 ? "green" : "gray"}
+            onClick={() => chooseType(3, 3)}
+          >
+            <img src={another} className="iconFood" />
+            <span className="ml-2" /> Khác
+          </Button>
         </Segment>
-      ) : (
-        <div>
-          <Segment loading={isLoading} className="p-5"></Segment>
-        </div>
-      )}
-    </div>
+        <Segment className="customSegment">
+          <Input
+            icon="search"
+            placeholder="Search..."
+            onChange={(e) => {
+              onSearch(e.target.value);
+            }}
+          />
+        </Segment>
+      </Segment>
+      <Segment loading={isLoading} className="listItem customSegment">
+        {dataFilter.length > 0 ? (
+          dataFilter.map((item) => (
+            <CardItem
+              key={item.key}
+              product={item}
+              onAddItem={() => addToCart()}
+            />
+          ))
+        ) : (
+          <p className="text-success font-weight-bold">
+            Chưa có món ăn tên {search} trong danh sách món
+            {colorId == 1 ? " Lẫu" : colorId == 2 ? " Đồ nướng" : " Món khác"}
+          </p>
+        )}
+      </Segment>
+    </Segment>
   );
-}
-
-export default SpecialPage;
+};

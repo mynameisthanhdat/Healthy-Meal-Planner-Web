@@ -4,8 +4,9 @@
 
 .listItem {
   display: flex;
-  // flex-wrap: wrap;
   justify-content: start;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .iconFood {

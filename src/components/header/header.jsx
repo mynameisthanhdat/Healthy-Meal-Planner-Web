@@ -16,6 +16,9 @@ const Header = (props) => (
             <Link className='option' to='special'>
                 ĐẶC BIỆT
             </Link>
+            <Link className='option' to='food'>
+                THỰC PHẨM
+            </Link>
             <Link className='option' to='about'>
                 GIỚI THIỆU
             </Link>
