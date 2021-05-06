@@ -18,9 +18,9 @@ const CartList = () => {
   const _showTotalPrice = (item) => {
     const price = item.toString();
     if (price.includes(".")) {
-      return <p>{price}00 VNĐ</p>;
+      return <p>{parseFloat(price).toFixed(1)}00 VNĐ</p>;
     } else {
-      return <p>{price}.000 VNĐ</p>;
+      return <p>{parseFloat(price).toFixed(1)}.000 VNĐ</p>;
     }
   };
 
@@ -28,7 +28,8 @@ const CartList = () => {
   });
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid pb-5 px-5">
+      <h2 className='text-success'>Danh sách món ăn đã chọn</h2>
       <Table color={"green"} key={"green"}>
         <Table.Header>
           <Table.Row>
@@ -57,7 +58,7 @@ const CartList = () => {
         <Table.Footer>
           <Table.Row>
             <Table.HeaderCell />
-            <Table.HeaderCell>Thành tiền</Table.HeaderCell>
+            <Table.HeaderCell className='font-weight-bold'>Thành tiền</Table.HeaderCell>
             <Table.HeaderCell><span className="text-danger font-weight-bold">{_showTotalPrice(totalPrice)}</span></Table.HeaderCell>
           </Table.Row>
         </Table.Footer>

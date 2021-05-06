@@ -1,20 +1,19 @@
 .card-container {
   display: flex;
   flex-direction: column;
-  // border: 1px solid grey;
   border-radius: 5px;
   cursor: pointer;
   padding: 25px;
   margin: 10px auto;
   min-width: 250px;
-  max-width: 300px;
+  max-width: 250px;
   height: 360px;
-  background-color: whitesmoke;
+  background-color: #fff;
   box-shadow: 5px 5px 25px rgb(184, 183, 183);
   
   .image {
-    width: 240px !important;
-    height: 180px !important;
+    width: 200px !important;
+    height: 160px !important;
   }
 
   .name {

@@ -23,8 +23,8 @@ function HomePage() {
       .get("https://hml-project.herokuapp.com/api/foods/menu")
       .then(function (response) {
         setLoading(false);
-        setDataSource(response.data?.data);
-        console.log(response.data?.data);
+        setDataSource(response.data?.data.filter(x => x.isSpecial == false));
+        console.log(response.data?.data.filter(x => x.isSpecial == false));
       })
       .catch(function (error) {
         setLoading(false);

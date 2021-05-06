@@ -11,7 +11,10 @@ const Header = (props) => (
         </Link>
         <div className='options'>
             <Link className='option' to='/'>
-                TRANG CHỦ
+                THỰC ĐƠN
+            </Link>
+            <Link className='option' to='special'>
+                ĐẶC BIỆT
             </Link>
             <Link className='option' to='about'>
                 GIỚI THIỆU

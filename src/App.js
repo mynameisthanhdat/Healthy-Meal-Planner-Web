@@ -5,10 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from "./components/header/header";
 import Home from "./pages/home/home";
+import Special from "./pages/special/special";
 import About from "./pages/about/about";
 import Contact from "./pages/contact/contact";
 import CartList from "./pages/cart/cart";
 import { useSelector } from 'react-redux';
+import {NotFoundPage} from './pages'
 
 function App() {
   const count = useSelector(state => state.homeReducer?.count)
@@ -17,9 +19,11 @@ function App() {
         <Header numberOfItems={count} />
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/special' component={Special} />
           <Route path='/contact' component={Contact} />
           <Route path='/about' component={About} />
           <Route path='/cart' component={CartList} />
+          <Route component={NotFoundPage}/>
         </Switch>
       </BrowserRouter>
   );
