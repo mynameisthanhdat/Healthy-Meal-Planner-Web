@@ -1,0 +1,50 @@
+.customSegment {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.foodInfo {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.container-img {
+  box-shadow: none !important;
+  border: none !important;
+  margin-top: -10px !important;
+  text-align: center;
+  max-width: 33%;
+  min-width: 300px;
+
+  .detail-img {
+    max-width: 300px;
+    min-width: 200px;
+    height: auto;
+  }
+}
+.container-content {
+  max-width: 33%;
+  min-width: 300px;
+  padding: 20px !important;
+  margin-left: 40px !important;
+
+  h3 {
+    text-decoration: underline;
+  }
+}
+
+.container-left {
+  max-width: 33%;
+  min-width: 300px;
+}
+
+.food-ingredient:first-letter {
+  text-transform: uppercase;
+}
+
+.img-menu {
+  width: 70px;
+  height: 50px;
+  margin: 0 10px;
+}

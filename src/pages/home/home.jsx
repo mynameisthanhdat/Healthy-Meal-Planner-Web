@@ -37,28 +37,22 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
-      {!isLoading ? (
-        <Segment>
-          <div className="container">
-            <div className="listItem">
+    <Segment loading={isLoading} className="customSegment">
+        <Segment className="customSegment">
+          <Segment className="container customSegment">
+            <Segment className="listItem customSegment">
               {dataSource.map((item) => (
                 <CardItem
                   key={item.key}
                   product={item}
                   onAddItem={() => addToCart()}
+                  detail={true}
                 />
               ))}
-            </div>
-          </div>
+            </Segment>
+          </Segment>
         </Segment>
-      ) : (
-        <div>
-          <p className="text-center">Đang tải dữ liệu...</p>
-          <Segment loading={isLoading} className="p-5"></Segment>
-        </div>
-      )}
-    </div>
+    </Segment>
   );
 }
 

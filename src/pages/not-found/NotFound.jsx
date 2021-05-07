@@ -1,5 +1,7 @@
 export const NotFoundPage = () => {
   return (
-    <p>Not Found</p>
+    <div style={{textAlign: "center"}}>
+      <p>Page Not Found</p>
+    </div>
   )
 }

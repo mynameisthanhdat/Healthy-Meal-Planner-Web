@@ -122,6 +122,7 @@ export const SpecialPage = () => {
               key={item.key}
               product={item}
               onAddItem={() => addToCart()}
+              detail={true}
             />
           ))
         ) : (

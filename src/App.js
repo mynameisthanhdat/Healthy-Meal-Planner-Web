@@ -9,7 +9,7 @@ import About from "./pages/about/about";
 import Contact from "./pages/contact/contact";
 import CartList from "./pages/cart/cart";
 import { useSelector } from 'react-redux';
-import {NotFoundPage, FoodPage, SpecialPage} from './pages'
+import {NotFoundPage, FoodPage, SpecialPage, MenuDetail, FoodInfo} from './pages'
 
 function App() {
   const count = useSelector(state => state.homeReducer?.count)
@@ -23,6 +23,8 @@ function App() {
           <Route path='/contact' component={Contact} />
           <Route path='/about' component={About} />
           <Route path='/cart' component={CartList} />
+          <Route path='/menu/:id' component={MenuDetail} />
+          <Route path='/cook/:id' component={FoodInfo} />
           <Route component={NotFoundPage}/>
         </Switch>
       </BrowserRouter>
