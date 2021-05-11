@@ -2,26 +2,26 @@ import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { Segment, Button, Icon, Input } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
-import CardItem from "../../components/card/card";
+import CardPick from "../../components/cardPick/carchPick";
 import "./food.scss";
 import protein from "../../assets/imgs/protein.png";
 import starch from "../../assets/imgs/starch.png";
 import vegetable from "../../assets/imgs/vegetable.png";
+import { useHistory } from "react-router-dom";
+let picked = [];
 
 export const FoodPage = () => {
   const [dataSource, setDataSource] = useState([]);
   const [valueFilter, setValueFilter] = useState("protein");
   const [colorId, setColorId] = useState(1);
   const [search, setSearch] = useState("");
-  const count = useSelector((state) => state.homeReducer?.count);
+  const history = useHistory();
   const isLoading = useSelector((state) => state.homeReducer?.isLoading);
   const dispatch = useDispatch();
-  const addToCart = useCallback(() =>
-    dispatch({ type: "ADD_ITEM_TO_CART", count: count + 1 })
-  );
   const setLoading = useCallback((status) =>
     dispatch({ type: "SET_LOADING", isLoading: status })
   );
+  const getListItems = useSelector((state) => state.foodReducer?.listItem);
 
   const fetchData = () => {
     setLoading(true);
@@ -37,8 +37,15 @@ export const FoodPage = () => {
       });
   };
 
-  useEffect(async () => {
-    await fetchData();
+  const moveToDetail = () => {
+    history.push({
+      pathname: `/menu/${getListItems[0]}`,
+      menuList: false
+    })
+}
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   const chooseType = async (id, value) => {
@@ -94,70 +101,75 @@ export const FoodPage = () => {
   };
 
   return (
-        <Segment className="container customSegment">
-          <Segment className="filter customSegment">
-            <Segment className="customSegment">
-              <Button
-                color={colorId === 1 ? "green" : "gray"}
-                onClick={() => chooseType(1, "protein")}
-              >
-                <img src={protein} className="iconFood" />
-                <span className="ml-2" /> Chất đạm
-              </Button>
-              <Button
-                color={colorId === 2 ? "green" : "gray"}
-                onClick={() => chooseType(2, "glucid")}
-              >
-                <img src={starch} className="iconFood" />
-                <span className="ml-2" /> Tinh bột
-              </Button>
-              <Button
-                color={colorId === 3 ? "green" : "gray"}
-                onClick={() => chooseType(3, "mineral")}
-              >
-                <img src={vegetable} className="iconFood" />
-                <span className="ml-2" /> Rau quả
-              </Button>
-            </Segment>
-            <Segment className='customSegment'>
-              <Input
-                icon={
-                  <Icon
-                    name="search"
-                    inverted
-                    circular
-                    link
-                    onClick={() => onSubmitSearch()}
-                  />
-                }
-                placeholder="Search..."
-                onChange={(e) => {
-                  onSearch(e.target.value);
-                }}
-              />
-            </Segment>
-          </Segment>
-          <Segment loading={isLoading} className="listItem customSegment">
-            {dataSource.length > 0 ? (
-              dataSource.map((item) => (
-                <CardItem
-                  key={item.key}
-                  product={item}
-                  onAddItem={() => addToCart()}
-                  detail={true}
-                />
-              ))
-            ) : (
-              <p className="text-success font-weight-bold">
-                Chưa có món ăn tên {search} trong danh sách thực phẩm
-                {colorId == 1
-                  ? " Chất đạm"
-                  : colorId == 2
-                  ? " Tinh bột"
-                  : " Rau quả"}
-              </p>
-            )}
-          </Segment>
+    <Segment className="container customSegment">
+      {getListItems.length > 0 && (
+        <div className="listHandle customSegment">
+          <p className="text-success font-weight-bold">
+            Đã chọn {getListItems.length} thực phẩm
+          </p>
+          <Button color="green" onClick={() => moveToDetail()}>
+            Xử lý món ăn
+          </Button>
+        </div>
+      )}
+      <Segment className="filter customSegment">
+        <Segment className="customSegment">
+          <Button
+            color={colorId === 1 ? "green" : "gray"}
+            onClick={() => chooseType(1, "protein")}
+          >
+            <img src={protein} className="iconFood" />
+            <span className="ml-2" /> Chất đạm
+          </Button>
+          <Button
+            color={colorId === 2 ? "green" : "gray"}
+            onClick={() => chooseType(2, "glucid")}
+          >
+            <img src={starch} className="iconFood" />
+            <span className="ml-2" /> Tinh bột
+          </Button>
+          <Button
+            color={colorId === 3 ? "green" : "gray"}
+            onClick={() => chooseType(3, "mineral")}
+          >
+            <img src={vegetable} className="iconFood" />
+            <span className="ml-2" /> Rau quả
+          </Button>
         </Segment>
+        <Segment className="customSegment">
+          <Input
+            icon={
+              <Icon
+                name="search"
+                inverted
+                circular
+                link
+                onClick={() => onSubmitSearch()}
+              />
+            }
+            placeholder="Search..."
+            onChange={(e) => {
+              onSearch(e.target.value);
+            }}
+          />
+        </Segment>
+      </Segment>
+      <Segment loading={isLoading} className="listItem customSegment">
+        {dataSource.length > 0 ? (
+          dataSource.map((item) => (
+            <CardPick key={item.key} product={item} detail={true} />
+          ))
+        ) : (
+          <p className="text-success font-weight-bold">
+            Chưa có món ăn tên {search} trong danh sách thực phẩm
+            {colorId == 1
+              ? " Chất đạm"
+              : colorId == 2
+              ? " Tinh bột"
+              : " Rau quả"}
+          </p>
+        )}
+      </Segment>
+    </Segment>
   );
-}
+};

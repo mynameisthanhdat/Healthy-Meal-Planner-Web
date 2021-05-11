@@ -1,0 +1,35 @@
+.card-container-pick {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 25px;
+  margin: 10px auto;
+  min-width: 250px;
+  max-width: 250px;
+  height: 330px;
+  background-color: #fff;
+  box-shadow: 5px 5px 25px rgb(184, 183, 183);
+  
+  .image {
+    width: 200px !important;
+    height: 160px !important;
+  }
+
+  .productName {
+   height: 30px;
+  }
+
+  .customSegment {
+    box-shadow: none !important;
+    border: none !important;
+    margin-top: -10px !important;
+  }
+
+  .iconCheck {
+    position: absolute;
+    color: green;
+    margin-left: 190px;
+    margin-top: -10px;
+  }
+}

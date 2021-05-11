@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import { Segment, Button, Icon, Input } from "semantic-ui-react";
+import { Segment, Button, Input } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import CardItem from "../../components/card/card";
 import "./special.scss";
@@ -13,7 +13,7 @@ export const SpecialPage = () => {
   const [dataFilter, setDataFilter] = useState([]);
   const [valueFilter, setValueFilter] = useState(1);
   const [colorId, setColorId] = useState(1);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const count = useSelector((state) => state.homeReducer?.count);
   const isLoading = useSelector((state) => state.homeReducer?.isLoading);
   const dispatch = useDispatch();
@@ -47,7 +47,6 @@ export const SpecialPage = () => {
   useEffect(async () => {
     await fetchData();
     await listDataFilter();
-    await setSearch();
   }, []);
 
   const listDataFilter = () => {
@@ -64,7 +63,7 @@ export const SpecialPage = () => {
     var listData = dataSource.filter(
       (item) =>
         item?.kindOf.toString().includes(value) &&
-        item?.name?.toLowerCase()?.includes(search.toLowerCase())
+        item?.name?.toLowerCase()?.includes(search?.toLowerCase())
     );
     setDataFilter(listData);
   };
